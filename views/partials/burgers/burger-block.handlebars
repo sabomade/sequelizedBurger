@@ -1,9 +1,11 @@
-<td>
-	{{name}}
+<tr>
+	<td>
+		{{burger_name}}
 
-	<button class="change-eat" data-id="{{id}}" data-neweat="{{eat}}">
-		{{#unless eat}}Devour Me!{{/unless}}
-	</button>
+		<button class="change-eat" data-id="{{id}}" data-devour="{{eat}}">
+			{{#if eat}}Devour Me!{{/if}}
+		</button>
 
-	<button class="delete-burger" data-id="{{this.id}}">DELETE!</button>
-</td>
+		<button class="delete-burger" data-id="{{this.id}}">DELETE!</button>
+	</td>
+</tr>

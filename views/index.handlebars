@@ -7,19 +7,34 @@
   <button type="submit">Add Burger</button>
 </form>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Burgers to Eat</th>
-      <th>Burgers Eaten</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        {{> burgers/burger-block eat=false}}
-    </tr>
-    <tr>
-        {{> burgers/burger-block eat=true}}
-    </tr>
-  </tbody>
-</table>
+<div class="burgerResults">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Burgers to Eat</th>
+      </tr>
+    </thead>
+    <tbody id="not-eaten">
+      {{#each burgers}}
+        {{#unless devoured}}
+          {{> burgers/burger-block eat=true}}
+        {{/unless}}
+      {{/each}}
+    </tbody>
+  </table>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Burgers Eaten</th>
+      </tr>
+    </thead>
+    <tbody id="eaten">
+      {{#each burgers}}
+        {{#if devoured}}
+          {{> burgers/burger-block eat=false}}
+        {{/if}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>

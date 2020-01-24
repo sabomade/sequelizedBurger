@@ -14,8 +14,17 @@ img{
     align-items: center;
 }
 form{
-    margin: 10px auto;
+    margin: auto;
+    width: 50%;
 }
 table{
-    margin: 10px auto;
+    margin: 20px;
+}
+
+.burgerResults{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: auto;
+    width: 100%;
 }
