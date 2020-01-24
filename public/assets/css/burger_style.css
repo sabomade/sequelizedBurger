@@ -1,0 +1,10 @@
+body{
+    background-color: #FCF3CF;
+    display: flex;
+    justify-content: center;
+}
+img{
+    width: 300px;
+    padding: 10px;
+    margin: 5px;
+}
