@@ -1,10 +1,21 @@
 body{
     background-color: #FCF3CF;
+}
+.container{
     display: flex;
     justify-content: center;
+    flex-flow: column nowrap;
+    margin: auto;
+    align-items: center;
 }
 img{
     width: 300px;
     padding: 10px;
-    margin: 5px;
+    align-items: center;
+}
+form{
+    margin: 10px auto;
+}
+table{
+    margin: 10px auto;
 }
