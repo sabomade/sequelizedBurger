@@ -22,6 +22,11 @@ var burger = {
     orm.delete("burgers", condition, function(res) {
       cb(res);
     });
+  },
+  truncate: function(table, cb){
+    orm.truncate(table, function(res){
+      cb(res);
+    });
   }
 };
 

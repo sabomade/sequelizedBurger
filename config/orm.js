@@ -100,6 +100,18 @@ var orm = {
 
       cb(result);
     });
+  },
+  truncate: function(table, cb){
+    var queryString = "DELETE FROM " + table;
+    console.log(queryString);
+    connection.query(queryString, function(err, result){
+      if (err){
+        console.log('we got an error');
+        throw err;
+      }
+      console.log('no error', result);
+      cb(result);
+    })
   }
 };
 

@@ -1,5 +1,5 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function() {
+$(document).ready(function() {
     $(".change-eat").on("click", function(event) {
       var id = $(this).data("id");
       var newEat = $(this).data("devour");
@@ -43,7 +43,7 @@ $(function() {
       );
     });
   
-    $(".delete-buger").on("click", function(event) {
+    $(".delete-burger").on("click", function(event) {
       var id = $(this).data("id");
   
       // Send the DELETE request.
@@ -57,5 +57,20 @@ $(function() {
         }
       );
     });
+
+    $(".clear-table").on("click", function(event) {
+  
+      // Send the DELETE request.
+      $.ajax("/api/burgers/all", {
+        type: "DELETE"
+      }).then(
+        function() {
+          console.log("table has been cleared");
+          // Reload the page to get the updated list
+          location.reload();
+        }
+      );
+    });    
+
   });
   

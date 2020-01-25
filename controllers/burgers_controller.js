@@ -46,6 +46,19 @@ router.put("/api/burgers/:id", function(req, res) {
 
 router.delete("/api/burgers/:id", function(req, res) {
   var condition = "id = " + req.params.id;
+  console.log(req.params.id);
+  
+  if (req.params.id === 'all') {
+    burger.truncate("burgers", function(result) {
+      console.log("result.affectedRows", result.affectedRows);
+      if (result.affectedRows === 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
+      } else {
+        return res.status(200).end();
+      }
+    });
+  }
 
   burger.delete(condition, function(result) {
     if (result.affectedRows == 0) {
@@ -56,6 +69,8 @@ router.delete("/api/burgers/:id", function(req, res) {
     }
   });
 });
+
+
 
 // Export routes for server.js to use.
 module.exports = router;
