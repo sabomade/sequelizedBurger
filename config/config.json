@@ -4,9 +4,8 @@
     "password": "root",
     "database": "sequelizedBurgers_db",
     "host": "localhost",
-    "PORT": 3307,
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "port": 3306,
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",

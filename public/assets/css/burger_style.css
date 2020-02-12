@@ -13,6 +13,9 @@ img{
     padding: 10px;
     align-items: center;
 }
+form{
+    margin-bottom: 20px;
+}
 .form-group{
     padding-right: 15px;
 }
@@ -22,7 +25,7 @@ table{
 .btn-light:hover{
     background-color: #e53a40;
 }
-.btn-light{
+.btn{
     margin-left: 15px;
 }
 
@@ -35,5 +38,9 @@ table{
     justify-content: center;
     position: relative;
 }
-
+.filterButtons{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
 

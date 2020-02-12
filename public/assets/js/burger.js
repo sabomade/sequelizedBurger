@@ -1,76 +1,89 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(document).ready(function() {
-    $(".change-eat").on("click", function(event) {
-      var id = $(this).data("id");
-      var newEat = $(this).data("devour");
-  
-      var newEatState = {
-        devoured: newEat
-      };
-  
-      // Send the PUT request.
-      $.ajax("/api/burgers/" + id, {
-        type: "PUT",
-        data: newEatState
-      }).then(
-        function() {
-          console.log("changed eat to", newEat);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $("#create-form").on("submit", function(event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-  
-      var newBurger = {
-        burger_name: $("#burger").val().trim(),
-        devoured: 0
-      };
-  
-      // Send the POST request.
-      $.ajax("/api/burgers", {
-        type: "POST",
-        data: newBurger
-      }).then(
-        function() {
-          console.log("created new burger");
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $(".delete-burger").on("click", function(event) {
-      var id = $(this).data("id");
-  
-      // Send the DELETE request.
-      $.ajax("/api/burgers/" + id, {
-        type: "DELETE"
-      }).then(
-        function() {
-          console.log("deleted burger", id);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
+  var customerID;
+  var burgerID;
+  var locationID;
 
-    $(".clear-table").on("click", function(event) {
-  
-      // Send the DELETE request.
-      $.ajax("/api/burgers/all", {
-        type: "DELETE"
-      }).then(
-        function() {
-          console.log("table has been cleared");
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });    
+  var url = window.location.search;
+
+  //grab customer, burger, or location ID
+  if(url.indexOf("?location_id=") !== -1) {
+    locationID = url.split("=")[1];
+  }else if(url.indexOf("?customer_id=") !== -1){
+    customerID = url.split("=")[1];
+  }else if(url.indexOf("?burger_id=") !== -1){
+    burgerID = url.split("=")[1];
+  }
+
+  // listener for submit new burger suggestion form
+  $("#create-form").on("submit", function(event){
+    event.preventDefault();
+    console.log("suggest burger form submitted")
+    var newBurger = {
+      suggested_by:$("#suggest-name").val().trim(),
+      burger_name:$("#burger-to-eat").val().trim()
+    };
+    console.log("newBurger", newBurger);
+    
+    //send POST request
+    $.post("/api/burgers", newBurger, () =>{
+      console.log("new burger created");
+      location.reload();
+    });
+    // $.ajax("/api/burgers",{
+    //   type: "POST",
+    //   data: newBurger
+    // }).then(function(){
+    //   console.log("new burger created")
+    //   location.reload();
+    // });
+  });
+
+  // // listener for try it button
+  // $("#try-burger").on("click", function(event) {
+  //   event.preventDefault();
+  //   $("#ate-burger").modal("toggle");
+  // });
+
+  // //listener for modal submit button
+  // $("#create-customer").on("submit", function(event){
+  //   event.preventDefault();
+  //   var newCustomer = {
+  //     customer_name:$("#customer-who-ate").val().trim(),
+  //     location:$("#ate-at-location:selected").val()
+  //   }
+
+
+  // })
+
+  // $(".delete-burger").on("click", function(event) {
+  //   var id = $(this).data("id");
+
+  //   // Send the DELETE request.
+  //   $.ajax("/api/burgers/" + id, {
+  //     type: "DELETE"
+  //   }).then(
+  //     function() {
+  //       console.log("deleted burger", id);
+  //       // Reload the page to get the updated list
+  //       location.reload();
+  //     }
+  //   );
+  // });
+
+  // $(".clear-table").on("click", function(event) {
+
+  //   // Send the DELETE request.
+  //   $.ajax("/api/burgers/all", {
+  //     type: "DELETE"
+  //   }).then(
+  //     function() {
+  //       console.log("table has been cleared");
+  //       // Reload the page to get the updated list
+  //       location.reload();
+  //     }
+  //   );
+  // });    
 
   });
   

@@ -1,0 +1,81 @@
+<img src="assets/img/burger.png">
+<h3>Suggest a New Burger!</h3>
+<p>Please tell us your name, your burger suggestion, & at which location we should serve this burger, then click
+  "submit".</p>
+
+<!-- form to enter customer data -->
+<form class="form-inline" id="create-form">
+  <!-- customer name text field -->
+  <div class="form-group">
+    <input type="text" class="form-control" id="suggest-name" placeholder="name">
+  </div>
+  <!-- burger text field -->
+  <div class="form-group">
+    <input type="text" class="form-control" id="burger-to-eat" placeholder="burger name">
+  </div>
+  <!-- submit button on burger suggestion form -->
+  <button type="submit" id="burger-suggestion" class="btn btn-dark">Submit</button>
+</form>
+
+<p>Have you tried one of our burgers? Click on the <em>try it!</em> button to let us know.</p>
+
+<!-- table to show user entered data -->
+<table class="table table-dark">
+  <caption>Suggested Burgers</caption>
+  <thead>
+    <tr>
+      <th>Suggested By</th>
+      <th>Burger</th>
+      <th>Eat This Burger?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- each row will be populated by user input & added to DB -->
+    <tr>
+      <td>The Dude</td>
+      <td>The Big Lebowski</td>
+      <td><button type="submit" id="try-burger" data-id="" data-burger-name="" class="btn btn-light">Try it!</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Results -->
+<h3>Big "Burger" Data</h3>
+<p>Want to see who's eating which of our burgers and where? Click on a button below to view our data!</p>
+
+<!-- buttons to filter & sort by certain criteria -->
+<div class="filterButtons">
+  <button type="button" class="btn btn-outline-dark" id="most-recent" onclick="#">View Most Recent</button>
+
+  <button type="button" class="btn btn-outline-dark" id="by-customer" onclick="#">View by Customers</button>
+
+  <button type="button" class="btn btn-outline-dark" id="num-by-loc" onclick="#">View Number by Location</button>
+
+  <button type="button" class="btn btn-outline-dark" id="burg-by-loc" onclick="#">View Burgers by Location</button>
+
+  <button type="button" class="btn btn-outline-dark" id="custBurg-by-loc" onclick="#">View Customers & Burgers by
+    Location</button>
+</div>
+
+<!-- table to show Try It button data -->
+<table class="table table-dark">
+  <caption>Recent Burgers Eaten by our Customers</caption>
+  <thead>
+    <tr>
+      <th>Customer</th>
+      <th>Burger</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- each row will be populated from button id -->
+    <tr>
+      <!-- customer name cell will be populated from pop-up modal asking customer name -->
+      <td>Some guy</td>
+      <td>The Big Lebowski</td>
+      <!-- location cell will be populated from same pop-up modal asking where they are -->
+      <td>Pensacola, FL</td>
+    </tr>
+  </tbody>
+</table>
