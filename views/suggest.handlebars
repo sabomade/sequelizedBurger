@@ -1,0 +1,35 @@
+<h3>Suggest a New Burger!</h3>
+<p>Please tell us your name and your burger suggestion then click
+    "submit".</p>
+
+<!-- form to enter customer data -->
+<form class="form-inline" id="create-form">
+    <!-- customer name text field -->
+    <div class="form-group">
+        <input type="text" class="form-control" id="suggest-name" placeholder="name">
+    </div>
+    <!-- burger text field -->
+    <div class="form-group">
+        <input type="text" class="form-control" id="burger-to-eat" placeholder="burger name">
+    </div>
+    <!-- submit button on burger suggestion form -->
+    <button type="submit" id="burger-suggestion" class="btn btn-dark">Submit</button>
+</form>
+
+<!-- table to show user entered data -->
+<table class="table table-dark">
+    <caption>Suggested Burgers</caption>
+    <thead>
+        <tr>
+            <th>Suggested By</th>
+            <th>Burger</th>
+            <th>Ingredients</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- each row will be populated by user input & added to DB -->
+        {{#each burgers}}
+        {{> suggest-block}}
+        {{/each}}
+    </tbody>
+</table>

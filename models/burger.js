@@ -1,13 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
   var Burger = sequelize.define("Burger", {
-    suggested_by: {
+    creator: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
-    burger_name: {
+    burgername: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -20,8 +20,8 @@ module.exports = function(sequelize, DataTypes) {
     Burger.belongsToMany(models.Customer, {
       through: "BurgerCustomer",
       as: "customers",
-      foreignKey: "burgerId",
-      otherKey: "customerId"
+      foreignKey: "burgerid",
+      otherKey: "customerid"
     });
   };
 

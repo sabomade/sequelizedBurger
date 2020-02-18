@@ -1,46 +1,52 @@
-body{
-    background-color: #f3dc39;
+body {
+  background-color: #f3dc39;
 }
-.container{
-    display: flex;
-    justify-content: center;
-    flex-flow: column nowrap;
-    margin: auto;
-    align-items: center;
+.container {
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+  margin: auto;
+  align-items: center;
 }
-img{
-    width: 600px;
-    padding: 10px;
-    align-items: center;
+img {
+  width: 600px;
+  padding: 10px;
+  align-items: center;
 }
-form{
-    margin-bottom: 20px;
+form {
+  margin-bottom: 20px;
 }
-.form-group{
-    padding-right: 15px;
+.form-group {
+  padding-right: 15px;
 }
-table{
-    margin: 20px;
+table {
+  margin: 20px;
+  color: white;
 }
-.btn-light:hover{
-    background-color: #e53a40;
+.buttons-inline {
+  display: inline;
+  margin-top: 50px;
 }
-.btn{
-    margin-left: 15px;
+.btn-light:hover {
+  background-color: #e53a40;
 }
-
+.btn {
+  margin-left: 15px;
+}
+.filterButtons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.fas {
+  margin: 0px 5px;
+}
 .list-group-item {
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 }
-.fixed-bottom{
-    display: flex;
-    justify-content: center;
-    position: relative;
+.fixed-bottom {
+  display: flex;
+  justify-content: center;
+  position: fixed;
 }
-.filterButtons{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-

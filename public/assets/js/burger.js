@@ -7,36 +7,30 @@ $(document).ready(function() {
   var url = window.location.search;
 
   //grab customer, burger, or location ID
-  if(url.indexOf("?location_id=") !== -1) {
+  if (url.indexOf("?location_id=") !== -1) {
     locationID = url.split("=")[1];
-  }else if(url.indexOf("?customer_id=") !== -1){
+  } else if (url.indexOf("?customer_id=") !== -1) {
     customerID = url.split("=")[1];
-  }else if(url.indexOf("?burger_id=") !== -1){
+  } else if (url.indexOf("?burger_id=") !== -1) {
     burgerID = url.split("=")[1];
   }
 
   // listener for submit new burger suggestion form
-  $("#create-form").on("submit", function(event){
+  $("#create-form").on("submit", function(event) {
     event.preventDefault();
-    console.log("suggest burger form submitted")
     var newBurger = {
-      suggested_by:$("#suggest-name").val().trim(),
-      burger_name:$("#burger-to-eat").val().trim()
+      creator: $("#suggest-name")
+        .val()
+        .trim(),
+      burgername: $("#burger-to-eat")
+        .val()
+        .trim()
     };
-    console.log("newBurger", newBurger);
-    
+
     //send POST request
-    $.post("/api/burgers", newBurger, () =>{
-      console.log("new burger created");
+    $.post("/api/burgers", newBurger, () => {
       location.reload();
     });
-    // $.ajax("/api/burgers",{
-    //   type: "POST",
-    //   data: newBurger
-    // }).then(function(){
-    //   console.log("new burger created")
-    //   location.reload();
-    // });
   });
 
   // // listener for try it button
@@ -52,7 +46,6 @@ $(document).ready(function() {
   //     customer_name:$("#customer-who-ate").val().trim(),
   //     location:$("#ate-at-location:selected").val()
   //   }
-
 
   // })
 
@@ -83,7 +76,5 @@ $(document).ready(function() {
   //       location.reload();
   //     }
   //   );
-  // });    
-
-  });
-  
+  // });
+});

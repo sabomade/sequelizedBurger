@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Customer = sequelize.define("Customer", {
-    customer_name: {
+    customername: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -13,8 +13,8 @@ module.exports = function(sequelize, DataTypes) {
     Customer.belongsToMany(models.Burger, {
       through: "BurgerCustomer",
       as: "burgers",
-      foreignKey: "customerId",
-      otherKey: "burgerId"
+      foreignKey: "customerid",
+      otherKey: "burgerid"
     });
   };
 
