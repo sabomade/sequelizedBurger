@@ -48,5 +48,5 @@ table {
 .fixed-bottom {
   display: flex;
   justify-content: center;
-  position: fixed;
+  position: relative;
 }

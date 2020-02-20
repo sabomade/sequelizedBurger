@@ -6,25 +6,32 @@ var router = express.Router();
 var db = require("../models");
 
 // Create all our routes and set up logic within those routes where required.
+// router.get("/", function(req, res) {
+//   res.render("index");
+// });
 router.get("/", function(req, res) {
-  res.render("index");
-});
-router.get("/suggest", function(req, res) {
   db.Burger.findAll().then(function(data) {
     var hbsObject = {
       burgers: data
     };
-    console.log("obj", hbsObject);
-    res.render("suggest", hbsObject);
+    //console.log("obj", hbsObject);
+    res.render("index", hbsObject);
+  });
+
+  db.Customer.findAll().then(function(data) {
+    var hbsObject2 = {
+      customers: data
+    };
+    res.render("index", hbsObject2);
   });
 });
 
-router.get("/eat", function(req, res) {
-  res.render("eat");
-});
-router.get("/bigData", function(req, res) {
-  res.render("bigData");
-});
+// router.get("/eat", function(req, res) {
+//   res.render("eat");
+// });
+// router.get("/bigData", function(req, res) {
+//   res.render("bigData");
+// });
 
 router.post("/api/burgers", function(req, res) {
   console.log("adding to db:", req.body);
@@ -32,6 +39,20 @@ router.post("/api/burgers", function(req, res) {
     {
       creator: req.body.creator,
       burgername: req.body.burgername
+    },
+    function(result) {
+      console.log(result);
+      res.json({ id: result.insertId });
+    }
+  );
+});
+
+router.post("/api/customers", function(req, res) {
+  console.log("adding to db:", req.body);
+  db.Customer.create(
+    {
+      customername: req.body.customername,
+      location: req.body.location
     },
     function(result) {
       console.log(result);

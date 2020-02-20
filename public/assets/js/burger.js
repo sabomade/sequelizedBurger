@@ -28,26 +28,42 @@ $(document).ready(function() {
     };
 
     //send POST request
-    $.post("/api/burgers", newBurger, () => {
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(function() {
+      console.log("created new burger");
+      // Reload the page to get the updated list
       location.reload();
     });
   });
 
-  // // listener for try it button
-  // $("#try-burger").on("click", function(event) {
-  //   event.preventDefault();
-  //   $("#ate-burger").modal("toggle");
-  // });
+  // listener for try it button
+  $("#try-burger").on("click", function(event) {
+    event.preventDefault();
+    $("#ate-burger").modal("toggle");
+  });
 
-  // //listener for modal submit button
-  // $("#create-customer").on("submit", function(event){
-  //   event.preventDefault();
-  //   var newCustomer = {
-  //     customer_name:$("#customer-who-ate").val().trim(),
-  //     location:$("#ate-at-location:selected").val()
-  //   }
+  //listener for modal submit button
+  $("#create-customer").on("submit", function(event) {
+    event.preventDefault();
+    var newCustomer = {
+      customername: $("#customer-who-ate")
+        .val()
+        .trim(),
+      location: $("#ate-at-location:selected").val()
+    };
 
-  // })
+    //send POST request
+    $.ajax("/api/customers", {
+      type: "POST",
+      data: newCustomer
+    }).then(function() {
+      console.log("created new customer");
+      // Reload the page to get the updated list
+      location.reload();
+    });
+  });
 
   // $(".delete-burger").on("click", function(event) {
   //   var id = $(this).data("id");
