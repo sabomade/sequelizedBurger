@@ -32,10 +32,11 @@ $(document).ready(function() {
     $.ajax("/api/burgers", {
       type: "POST",
       data: newBurger
-    }).then(function() {
+    }).then(function(result) {
       console.log("created new burger");
       // Reload the page to get the updated list
       location.reload();
+      // window.location.href = "/";
     });
   });
 
@@ -46,16 +47,23 @@ $(document).ready(function() {
   // });
 
   //listener for try it button  "#create-customer"
-  $("#try-burger").on("click", function(event) {
+  $("button#try-burger").on("click", function(event) {
+    var temp = $(this)
+      .parent()
+      .siblings(".custName")
+      .find("input")
+      .val()
+      .trim();
+
+    console.log(temp);
     event.preventDefault();
     var newCustomer = {
-      customername: $("#customer-who-ate")
-        .val()
-        .trim()
+      customername: temp
       // location: $("#ate-at-location:selected").val()
     };
     var id = $(this).data("id");
     console.log("id", id);
+    console.log("newCustomer", newCustomer);
 
     //send PUT request
     $.ajax("/api/burgers/" + id, {

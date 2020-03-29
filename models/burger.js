@@ -21,8 +21,10 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Burger.associate = function(models) {
-    Burger.hasOne(models.Customer, {
-      onDelete: "cascade"
+    Burger.belongsTo(models.Customer, {
+      foreignKey: {
+        allowNull: true
+      }
     });
   };
   return Burger;

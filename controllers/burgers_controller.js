@@ -21,21 +21,19 @@ router.get("/", function(req, res) {
 //create new burger
 router.post("/api/burgers", function(req, res) {
   console.log("adding to db:", req.body);
-  db.Burger.create(
-    {
-      creator: req.body.creator,
-      burgername: req.body.burgername
-    },
-    function(result) {
-      //console.log(result);
-      //res.json({ id: result.insertId });
-      // res.redirect("/");
-    }
-  );
+  db.Burger.create({
+    creator: req.body.creator,
+    burgername: req.body.burgername
+  }).then(function(result) {
+    console.log(result);
+    res.json({ id: result.insertId });
+    res.redirect("/");
+  });
 });
 
 //update burger to devoured
 router.put("/api/burgers/:id", function(req, res) {
+  console.log("---inside put----");
   db.Burger.update(
     {
       devoured: 1
@@ -46,6 +44,7 @@ router.put("/api/burgers/:id", function(req, res) {
       }
     }
   );
+  console.log("--put complete----");
   // res.redirect("/");
 });
 
@@ -70,68 +69,5 @@ router.post("/api/customers", function(req, res) {
     // res.redirect("/");
   });
 });
-
-// router.get("/eat", function(req, res) {
-//   res.render("eat");
-// });
-// router.get("/bigData", function(req, res) {
-//   res.render("bigData");
-// });
-
-// router.post("/api/customers", function(req, res) {
-//   console.log("adding to db:", req.body);
-//   db.Customer.create(
-//     {
-//       customername: req.body.customername,
-//       location: req.body.location
-//     },
-//     function(result) {
-//       console.log(result);
-//       res.json({ id: result.insertId });
-//     }
-//   );
-// });
-
-// router.get("/burgers", function(req, res) {
-//   // get all burgers
-//   const allBurgers = burger.findAll({
-//     //include the customers
-//     include: [
-//       {
-//         model: Customer,
-//         as: "customers",
-//         required: false,
-//         //pass customer attributes we want to retrieve
-//         attributes: ["id", "customername"],
-//         through: {
-//           model: BurgerCustomer
-//         }
-//       }
-//     ]
-//   });
-
-//   return respondWith(res, 200);
-// });
-
-// router.get("/customers", function(req, res) {
-//   // get all customers
-//   const allCustomers = customer.findAll({
-//     //include the burgers
-//     include: [
-//       {
-//         model: Burger,
-//         as: "burgers",
-//         required: false,
-//         //pass burger attributes we want to retrieve
-//         attributes: ["id", "burgername"],
-//         through: {
-//           model: BurgerCustomer
-//         }
-//       }
-//     ]
-//   });
-
-//   return respondWith(res, 200);
-// });
 
 module.exports = router;

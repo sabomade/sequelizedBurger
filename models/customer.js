@@ -10,10 +10,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Customer.associate = function(models) {
-    Customer.belongsTo(models.Burger, {
-      foriegnKey: {
-        allowNull: false
-      }
+    Customer.hasMany(models.Burger, {
+      onDelete: "cascade"
     });
   };
 
