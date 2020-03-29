@@ -1,19 +1,19 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(document).ready(function() {
-  var customerID;
-  var burgerID;
-  var locationID;
+  // var customerID;
+  // var burgerID;
+  // var locationID;
 
-  var url = window.location.search;
+  // var url = window.location.search;
 
-  //grab customer, burger, or location ID
-  if (url.indexOf("?location_id=") !== -1) {
-    locationID = url.split("=")[1];
-  } else if (url.indexOf("?customer_id=") !== -1) {
-    customerID = url.split("=")[1];
-  } else if (url.indexOf("?burger_id=") !== -1) {
-    burgerID = url.split("=")[1];
-  }
+  // //grab customer, burger, or location ID
+  // if (url.indexOf("?location_id=") !== -1) {
+  //   locationID = url.split("=")[1];
+  // } else if (url.indexOf("?customer_id=") !== -1) {
+  //   customerID = url.split("=")[1];
+  // } else if (url.indexOf("?burger_id=") !== -1) {
+  //   burgerID = url.split("=")[1];
+  // }
 
   // listener for submit new burger suggestion form
   $("#create-form").on("submit", function(event) {
@@ -24,7 +24,8 @@ $(document).ready(function() {
         .trim(),
       burgername: $("#burger-to-eat")
         .val()
-        .trim()
+        .trim(),
+      devoured: false
     };
 
     //send POST request
@@ -39,30 +40,34 @@ $(document).ready(function() {
   });
 
   // listener for try it button
-  $("#try-burger").on("click", function(event) {
-    event.preventDefault();
-    $("#ate-burger").modal("toggle");
-  });
+  // $("#try-burger").on("click", function(event) {
+  //   event.preventDefault();
+  //   $("#ate-burger").modal("toggle");
+  // });
 
-  //listener for modal submit button
-  $("#create-customer").on("submit", function(event) {
+  //listener for try it button  "#create-customer"
+  $("#try-burger").on("click", function(event) {
     event.preventDefault();
     var newCustomer = {
       customername: $("#customer-who-ate")
         .val()
-        .trim(),
-      location: $("#ate-at-location:selected").val()
+        .trim()
+      // location: $("#ate-at-location:selected").val()
     };
+    var id = $(this).data("id");
+    console.log("id", id);
 
-    //send POST request
-    $.ajax("/api/customers", {
-      type: "POST",
+    //send PUT request
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      // boolean: 1, customer: newCustomer
       data: newCustomer
     }).then(function() {
       console.log("created new customer");
       // Reload the page to get the updated list
       location.reload();
     });
+    $("#customer-who-ate").val("");
   });
 
   // $(".delete-burger").on("click", function(event) {

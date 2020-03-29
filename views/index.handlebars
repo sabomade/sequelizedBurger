@@ -26,15 +26,20 @@
             <th>Suggested By</th>
             <th>Burger</th>
             <th>Eat This Burger?</th>
+            <th>Customer Name</th>
         </tr>
     </thead>
     <tbody>
         <!-- each row will be populated by user input & added to DB -->
         {{#each burgers}}
+        {{#unless this.devoured}}
         {{>suggest-block}}
+        {{/unless}}
         {{/each}}
     </tbody>
 </table>
+
+
 
 <!-- Results -->
 <h3>Big "Burger" Data</h3>
@@ -66,8 +71,10 @@
     </thead>
     <tbody>
         <!-- each row will be populated from button id -->
-        {{#each customers}}
+        {{#each burger}}
+        {{#if this.devoured}}
         {{>ate-block}}
+        {{/if}}
         {{/each}}
     </tbody>
 </table>

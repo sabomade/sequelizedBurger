@@ -10,19 +10,12 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Customer.associate = function(models) {
-    Customer.belongsToMany(models.Burger, {
-      through: "BurgerCustomer",
-      as: "burgers",
-      foreignKey: "customerid",
-      otherKey: "burgerid"
+    Customer.belongsTo(models.Burger, {
+      foriegnKey: {
+        allowNull: false
+      }
     });
   };
-
-  // Customer.associate = function(models) {
-  //   Customer.hasMany(models.Location, {
-  //     onDelete: "cascade"
-  //   });
-  // };
 
   return Customer;
 };

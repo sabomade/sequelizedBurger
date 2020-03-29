@@ -13,17 +13,17 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1, 20]
       }
+    },
+    devoured: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: 0
     }
   });
 
   Burger.associate = function(models) {
-    Burger.belongsToMany(models.Customer, {
-      through: "BurgerCustomer",
-      as: "customers",
-      foreignKey: "burgerid",
-      otherKey: "customerid"
+    Burger.hasOne(models.Customer, {
+      onDelete: "cascade"
     });
   };
-
   return Burger;
 };
