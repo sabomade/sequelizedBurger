@@ -1,6 +1,6 @@
 <tr>
     <!-- customer name cell will be populated from pop-up modal asking customer name -->
-    <td>{{dataValues.customername}}</td>
+    <td>{{#if dataValues.Customer.customername}} {{dataValues.Customer.customername}}{{/if}}</td>
     <td>{{dataValues.burgername}}</td>
     <!-- location cell will be populated from same pop-up modal asking where they are -->
     <td>Some Location</td>
